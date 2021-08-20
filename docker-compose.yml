@@ -16,13 +16,15 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
+    image: jrcs/letsencrypt-nginx-proxy-companion #:2.1.0
     container_name: nginx-proxy-le
     volumes_from:
       - nginx-proxy
     volumes:
       - certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
+#    environment:
+#      ACME_CA_URI: https://acme-v02.api.letsencrypt.org/directory
 
 volumes:
   conf:
